@@ -3,302 +3,253 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HARIX – Smart Tech for Smart Life</title>
+    <title>HARIX | Smart Watch & Earbuds 2 in 1</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
         
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #FDFDFF;
+            background-color: #ffffff;
+            color: #1d1d1f;
+            -webkit-font-smoothing: antialiased;
         }
 
-        .harix-gradient {
-            background: linear-gradient(135deg, #1d4ed8 0%, #3b82f6 100%);
+        .soft-shadow {
+            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.04);
         }
 
-        .product-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+        .order-gradient {
+            background: #0071e3;
+            transition: all 0.2s ease;
         }
 
-        .hide { display: none; }
+        .order-gradient:hover {
+            background: #0077ed;
+            transform: scale(1.02);
+        }
+
+        .floating-product {
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        section {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s ease-out;
+        }
+
+        section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .gallery-img {
+            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .gallery-card:hover .gallery-img {
+            transform: scale(1.08);
+        }
     </style>
 </head>
-<body class="text-gray-900">
+<body>
 
-    <!-- Navbar -->
-    <nav class="sticky top-0 z-50 bg-white border-b border-gray-100 shadow-sm">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center h-16">
-                <div class="flex items-center cursor-pointer" onclick="showView('home')">
-                    <span class="text-2xl font-black text-blue-600 tracking-tighter italic">HARIX</span>
+    <!-- Minimalist Nav -->
+    <nav class="fixed top-0 w-full z-50 bg-white/80 backdrop-blur-md border-b border-gray-100">
+        <div class="max-w-6xl mx-auto px-6 h-16 flex justify-between items-center">
+            <div class="flex items-center space-x-2">
+                <div class="w-8 h-8 bg-black rounded-lg flex items-center justify-center">
+                    <span class="text-white font-bold text-sm">H</span>
                 </div>
-                
-                <div class="hidden md:flex items-center space-x-8">
-                    <button onclick="showView('home')" class="text-gray-600 hover:text-blue-600 font-medium">Home</button>
-                    <button onclick="showView('shop')" class="text-gray-600 hover:text-blue-600 font-medium">Shop</button>
-                    <button class="text-gray-600 hover:text-blue-600 font-medium">Track Order</button>
-                </div>
-
-                <div class="flex items-center space-x-4">
-                    <div class="relative cursor-pointer" onclick="showView('shop')">
-                        <i class="fa-solid fa-magnifying-glass text-gray-700"></i>
-                    </div>
-                    <button class="md:hidden text-gray-700">
-                        <i class="fa-solid fa-bars text-xl"></i>
-                    </button>
-                </div>
+                <span class="text-xl font-bold tracking-tight">HARIX</span>
             </div>
+            <button onclick="handlePurchase()" class="bg-black text-white px-5 py-2 rounded-full text-xs font-bold hover:opacity-80 transition-opacity">
+                Order Now
+            </button>
         </div>
     </nav>
 
-    <!-- Main Content Area -->
-    <main id="main-content">
-        
-        <!-- HOME VIEW -->
-        <section id="view-home" class="space-y-16 py-6">
-            <!-- Hero -->
-            <div class="relative h-[450px] flex items-center harix-gradient rounded-3xl overflow-hidden mx-4">
-                <div class="relative z-10 px-8 md:px-20 max-w-2xl text-white">
-                    <h1 class="text-5xl md:text-6xl font-extrabold mb-4 leading-tight">
-                        Smart Tech for <br> <span class="text-yellow-400">Smart Life</span>
-                    </h1>
-                    <p class="text-lg mb-8 text-blue-100">Explore the largest collection of genuine tech gadgets and accessories at HARIX.</p>
-                    <button onclick="showView('shop')" class="bg-white text-blue-600 px-8 py-4 rounded-full font-bold text-lg hover:bg-gray-100 transition-all shadow-xl flex items-center">
-                        Shop Now <i class="fa-solid fa-chevron-right ml-2 text-sm"></i>
+    <!-- Hero Section -->
+    <main class="pt-32 pb-10 px-6">
+        <section class="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div class="text-center lg:text-left space-y-6">
+                <h2 class="text-blue-600 font-semibold tracking-wide text-sm uppercase italic">World First: Watch + Earbuds</h2>
+                <h1 class="text-5xl md:text-6xl font-extrabold tracking-tight leading-tight">
+                    Smart Watch <br> <span class="text-gray-400 font-medium">with Built-in Buds.</span>
+                </h1>
+                <p class="text-xl text-gray-500 max-w-lg mx-auto lg:mx-0 leading-relaxed">
+                    The ultimate 2-in-1 wearable. Rugged 1.85" HD display with high-fidelity earbuds hidden right inside. Never forget your music again.
+                </p>
+                <div class="pt-4 flex flex-col items-center lg:items-start gap-4">
+                    <div class="flex items-center space-x-4">
+                        <span class="text-4xl font-bold text-slate-900">৳ 1,200</span>
+                        <span class="text-gray-400 line-through text-lg">৳ 2,990</span>
+                    </div>
+                    <button onclick="handlePurchase()" class="order-gradient text-white px-12 py-4 rounded-full font-bold text-lg shadow-lg">
+                        Buy Now
                     </button>
+                    <p class="text-xs text-gray-400 mt-2">Free Delivery • 7 Days Replacement • 1 Year Warranty</p>
                 </div>
             </div>
 
-            <!-- Trust Badges -->
-            <div class="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div class="flex items-center p-6 bg-white rounded-2xl border border-gray-100 shadow-sm">
-                    <i class="fa-solid fa-truck-fast text-3xl text-blue-600 mr-4"></i>
-                    <div><h4 class="font-bold">Fast Delivery</h4><p class="text-gray-500 text-sm">Across Bangladesh in 48h</p></div>
-                </div>
-                <div class="flex items-center p-6 bg-white rounded-2xl border border-gray-100 shadow-sm">
-                    <i class="fa-solid fa-shield-check text-3xl text-blue-600 mr-4"></i>
-                    <div><h4 class="font-bold">Genuine Products</h4><p class="text-gray-500 text-sm">100% official brand items</p></div>
-                </div>
-                <div class="flex items-center p-6 bg-white rounded-2xl border border-gray-100 shadow-sm">
-                    <i class="fa-solid fa-rotate-left text-3xl text-blue-600 mr-4"></i>
-                    <div><h4 class="font-bold">7-Day Return</h4><p class="text-gray-500 text-sm">Easy no-questions refund</p></div>
-                </div>
-            </div>
-
-            <!-- Best Sellers Grid -->
-            <div class="max-w-7xl mx-auto px-4">
-                <div class="flex justify-between items-end mb-8">
-                    <div>
-                        <h2 class="text-3xl font-bold">Best Sellers</h2>
-                        <p class="text-gray-500">Most loved tech by our community</p>
-                    </div>
-                </div>
-                <div id="home-products" class="grid grid-cols-2 lg:grid-cols-4 gap-6">
-                    <!-- Products injected by JS -->
-                </div>
+            <!-- Main Image Area -->
+            <div class="relative flex justify-center items-center">
+                <div class="absolute w-72 h-72 bg-blue-100 rounded-full blur-3xl opacity-30"></div>
+                <!-- Main Product Image showing both colors (img1) -->
+                <img src="img1.png" 
+                     alt="HARIX Smart Watch Colors" class="floating-product w-full max-w-md relative z-10 drop-shadow-2xl rounded-2xl">
             </div>
         </section>
-
-        <!-- SHOP VIEW -->
-        <section id="view-shop" class="hide max-w-7xl mx-auto px-4 py-12">
-            <div class="flex flex-col md:flex-row gap-8">
-                <aside class="w-full md:w-64 space-y-6">
-                    <h3 class="font-bold text-xl mb-4">Categories</h3>
-                    <div id="category-list" class="space-y-2">
-                        <!-- Categories injected by JS -->
-                    </div>
-                </aside>
-                <div class="flex-1">
-                    <div class="mb-8 relative">
-                        <i class="fa-solid fa-magnifying-glass absolute left-4 top-1/2 -translate-y-1/2 text-gray-400"></i>
-                        <input type="text" id="search-input" placeholder="Search for products..." class="w-full pl-12 pr-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500">
-                    </div>
-                    <div id="shop-products" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                        <!-- Products injected by JS -->
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- PRODUCT DETAIL VIEW -->
-        <section id="view-product" class="hide max-w-7xl mx-auto px-4 py-12">
-            <div id="product-detail-container">
-                <!-- Details injected by JS -->
-            </div>
-        </section>
-
     </main>
 
-    <!-- Footer -->
-    <footer class="bg-gray-900 text-white pt-16 pb-8 mt-20">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8 border-b border-gray-800 pb-8">
-                <div>
-                    <h3 class="text-2xl font-black mb-4 italic tracking-tighter text-blue-500">HARIX</h3>
-                    <p class="text-gray-400 text-sm">Empowering your lifestyle with the smartest tech in Bangladesh.</p>
+    <!-- The Magic: Earbuds Reveal (img2 / img3) -->
+    <section class="max-w-6xl mx-auto px-6 py-20">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            <div class="order-2 lg:order-1">
+                <img src="img2.png" alt="Earbuds Integrated" class="rounded-3xl soft-shadow w-full">
+            </div>
+            <div class="space-y-6 order-1 lg:order-2">
+                <h2 class="text-3xl font-bold tracking-tight">Music on your wrist.</h2>
+                <p class="text-lg text-gray-500">Stop carrying extra cases. Our innovative design houses a pair of high-fidelity wireless earbuds directly under the watch face. Magnetically secured and always charging.</p>
+                <ul class="space-y-4">
+                    <li class="flex items-center space-x-3 text-gray-700">
+                        <i class="fa-solid fa-circle-check text-blue-600"></i>
+                        <span>Auto-pairing when removed</span>
+                    </li>
+                    <li class="flex items-center space-x-3 text-gray-700">
+                        <i class="fa-solid fa-circle-check text-blue-600"></i>
+                        <span>Noise-isolating silicone tips</span>
+                    </li>
+                    <li class="flex items-center space-x-3 text-gray-700">
+                        <i class="fa-solid fa-circle-check text-blue-600"></i>
+                        <span>Touch control for calls & music</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Grid (img4, img5, img6) -->
+    <section class="max-w-6xl mx-auto px-6 py-20 bg-gray-50 rounded-[3rem] my-10">
+        <div class="text-center mb-12">
+            <h2 class="text-3xl font-bold tracking-tight">Precision Engineering</h2>
+            <p class="text-gray-500 mt-2">Flip to reveal. Snap to charge.</p>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="gallery-card group bg-white p-4 rounded-3xl soft-shadow overflow-hidden">
+                <div class="overflow-hidden rounded-2xl aspect-square mb-4">
+                    <img src="img4.png" alt="Mechanical View" class="gallery-img w-full h-full object-cover">
                 </div>
-                <div>
-                    <h4 class="font-semibold mb-4 text-white">Categories</h4>
-                    <ul class="text-gray-400 text-sm space-y-2">
-                        <li>Smartphones</li>
-                        <li>Accessories</li>
-                        <li>Gaming Gear</li>
-                    </ul>
+                <h4 class="font-bold text-center text-sm">Flip-Top Design</h4>
+            </div>
+            <div class="gallery-card group bg-white p-4 rounded-3xl soft-shadow overflow-hidden">
+                <div class="overflow-hidden rounded-2xl aspect-square mb-4">
+                    <img src="img5.png" alt="Buds Charging" class="gallery-img w-full h-full object-cover">
                 </div>
-                <div>
-                    <h4 class="font-semibold mb-4 text-white">Support</h4>
-                    <ul class="text-gray-400 text-sm space-y-2">
-                        <li>Contact Us</li>
-                        <li>7-Day Returns</li>
-                        <li>Warranty Policy</li>
-                    </ul>
+                <h4 class="font-bold text-center text-sm">Magnetic Charging</h4>
+            </div>
+            <div class="gallery-card group bg-white p-4 rounded-3xl soft-shadow overflow-hidden">
+                <div class="overflow-hidden rounded-2xl aspect-square mb-4">
+                    <img src="img6.png" alt="Complete Set" class="gallery-img w-full h-full object-cover">
                 </div>
-                <div>
-                    <h4 class="font-semibold mb-4 text-white">Payment Methods</h4>
-                    <div class="flex space-x-4 opacity-70">
-                        <span class="text-xs bg-gray-800 px-2 py-1 rounded">bKash</span>
-                        <span class="text-xs bg-gray-800 px-2 py-1 rounded">Nagad</span>
-                        <span class="text-xs bg-gray-800 px-2 py-1 rounded">COD</span>
+                <h4 class="font-bold text-center text-sm">Premium Finish</h4>
+            </div>
+        </div>
+    </section>
+
+    <!-- Technical Specs -->
+    <section class="max-w-6xl mx-auto px-6 py-24">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+            <div class="bg-slate-900 text-white p-10 rounded-[2.5rem] space-y-8">
+                <h3 class="text-2xl font-bold">Health & Performance</h3>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                    <div>
+                        <p class="text-blue-400 text-xs font-bold uppercase tracking-widest mb-1">Sensors</p>
+                        <p class="text-sm opacity-80">True Blood Oxygen, Blood Glucose, Heart Rate, Blood Pressure Monitoring.</p>
+                    </div>
+                    <div>
+                        <p class="text-blue-400 text-xs font-bold uppercase tracking-widest mb-1">Chipset</p>
+                        <p class="text-sm opacity-80">Zhongke Lanxun Main Control for ultra-smooth performance.</p>
+                    </div>
+                    <div>
+                        <p class="text-blue-400 text-xs font-bold uppercase tracking-widest mb-1">Battery</p>
+                        <p class="text-sm opacity-80">230mAh (3-5 days active, 15-20 days standby).</p>
+                    </div>
+                    <div>
+                        <p class="text-blue-400 text-xs font-bold uppercase tracking-widest mb-1">App</p>
+                        <p class="text-sm opacity-80">I-Band App Support for iOS & Android.</p>
                     </div>
                 </div>
             </div>
-            <p class="text-center text-gray-500 text-xs">© 2024 HARIX Bangladesh. Built for excellence.</p>
+            <div class="flex flex-col justify-center space-y-6 px-4">
+                <h3 class="text-3xl font-extrabold">The "Ceiling" of Cost-Effectiveness.</h3>
+                <p class="text-gray-500 leading-relaxed">Our private model design ensures fewer competitors and a unique look that stands out. Featuring a high-fidelity speaker and a smooth rotary encoder for effortless navigation.</p>
+                <div class="flex space-x-4">
+                    <div class="w-12 h-12 rounded-full bg-black border-2 border-white ring-2 ring-gray-100"></div>
+                    <div class="w-12 h-12 rounded-full bg-pink-200 border-2 border-white ring-2 ring-gray-100"></div>
+                </div>
+                <p class="text-sm font-medium">Available in Matte Black and Rose Pink</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final Order Action -->
+    <section class="py-20 px-6 text-center max-w-4xl mx-auto">
+        <div class="bg-white border border-gray-100 p-8 md:p-12 rounded-[3rem] soft-shadow">
+            <h2 class="text-4xl font-extrabold mb-4 italic">Get Yours Today.</h2>
+            <p class="text-gray-500 mb-10 max-w-md mx-auto">Experience the convenience of having your music always ready on your wrist.</p>
+            <div class="flex flex-col md:flex-row items-center justify-center gap-6">
+                <button onclick="handlePurchase()" class="bg-black text-white px-12 py-5 rounded-full font-bold hover:scale-105 transition-all w-full md:w-auto text-xl shadow-2xl">
+                    Order Now - ৳ 1,200
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-12 border-t border-gray-100 text-center">
+        <div class="max-w-6xl mx-auto px-6">
+            <p class="text-xs text-gray-400 font-medium uppercase tracking-widest mb-4">© 2024 HARIX BANGLADESH</p>
+            <div class="flex justify-center space-x-6 text-gray-400">
+                <a href="#" class="hover:text-black transition-colors"><i class="fa-brands fa-facebook-f"></i></a>
+                <a href="#" class="hover:text-black transition-colors"><i class="fa-brands fa-instagram"></i></a>
+                <a href="#" class="hover:text-black transition-colors"><i class="fa-brands fa-whatsapp"></i></a>
+            </div>
         </div>
     </footer>
 
     <script>
-        /**
-         * GOOGLE FORM CONFIGURATION
-         * -----------------------------------------------------------------------------------
-         * 1. GOOGLE_FORM_URL: The URL to your Google Form.
-         * 2. ENTRY_ID_PRODUCT_NAME: The ID for the 'Product Name' field in your form.
-         * 3. ENTRY_ID_PRICE: The ID for the 'Price' field in your form.
-         * * HOW TO FIND ENTRY IDs:
-         * - Go to your Google Form.
-         * - Click the three dots (top right) -> "Get pre-filled link".
-         * - Enter "XYZ" in the Product Name field and "123" in the Price field.
-         * - Click "Get Link" and copy it.
-         * - Look for "entry.XXXXXX=XYZ" in that link. The "entry.XXXXXX" is your ID.
-         * -----------------------------------------------------------------------------------
-         */
-        const GOOGLE_FORM_URL = "https://docs.google.com/forms/d/e/1FAIpQLSdV5H_c_LUIlSqC-B-4Uvedzg-H7NYG7akgPTGEE75gmkFTWg/viewform";
-        
-        const ENTRY_ID_PRODUCT_NAME = "entry.123456789"; // REPLACE THIS with your specific entry ID
-        const ENTRY_ID_PRICE = "entry.987654321";        // REPLACE THIS with your specific entry ID
-
-        // Product Catalog
-        const PRODUCTS = [
-            { id: 1, name: 'HARIX Airbuds Pro', category: 'Accessories', price: 3500, image: 'https://images.unsplash.com/photo-1588423770574-910ae97c653e?q=80&w=400&h=400&fit=crop', desc: 'Crystal clear sound, 30h battery, and noise cancellation.', specs: ['Bluetooth 5.3', 'IPX5 Waterproof', 'Wireless Charging'] },
-            { id: 2, name: 'HARIX Ultra Phone Z', category: 'Smartphones', price: 45000, image: 'https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?q=80&w=400&h=400&fit=crop', desc: 'Ultimate flagship experience with a 120Hz AMOLED display.', specs: ['8GB RAM', '256GB Storage', '108MP Camera'] },
-            { id: 3, name: 'Gaming Hub Console', category: 'Gaming', price: 12000, image: 'https://images.unsplash.com/photo-1485827404703-89b55fcc595e?q=80&w=400&h=400&fit=crop', desc: 'Next-gen performance in a compact, portable design.', specs: ['4K Output', '1TB SSD', 'RGB Lighting'] },
-            { id: 4, name: 'HARIX Watch Series S', category: 'Smart Devices', price: 5500, image: 'https://images.unsplash.com/photo-1544117518-30dd0f735d46?q=80&w=400&h=400&fit=crop', desc: 'Your fitness partner with heart rate monitoring.', specs: ['AMOLED Display', '14-Day Battery', 'GPS'] }
-        ];
-
-        const CATEGORIES = ['All', 'Smartphones', 'Accessories', 'Smart Devices', 'Gaming'];
-        let currentCategory = 'All';
-
-        window.onload = () => {
-            renderProducts('home-products', PRODUCTS);
-            renderProducts('shop-products', PRODUCTS);
-            renderCategories();
-            
-            document.getElementById('search-input').addEventListener('input', (e) => {
-                const filtered = PRODUCTS.filter(p => p.name.toLowerCase().includes(e.target.value.toLowerCase()));
-                renderProducts('shop-products', filtered);
-            });
+        const PRODUCT_INFO = {
+            name: "HARIX 2-in-1 Smart Watch Ultra",
+            price: 5490
         };
 
-        function showView(viewId) {
-            document.querySelectorAll('main > section').forEach(s => s.classList.add('hide'));
-            document.getElementById(`view-${viewId}`).classList.remove('hide');
-            window.scrollTo(0, 0);
+        const GOOGLE_FORM_URL = "https://docs.google.com/forms/d/e/1FAIpQLSdV5H_c_LUIlSqC-B-4Uvedzg-H7NYG7akgPTGEE75gmkFTWg/viewform";
+        
+        function handlePurchase() {
+            // Pre-filling not fully configured without knowing exact entry IDs, 
+            // but the base URL works to redirect to your order form.
+            window.location.href = GOOGLE_FORM_URL;
         }
 
-        function renderProducts(containerId, list) {
-            const container = document.getElementById(containerId);
-            if (!container) return;
-            
-            container.innerHTML = list.map(p => `
-                <div class="product-card bg-white rounded-2xl overflow-hidden border border-gray-100 cursor-pointer transition-all" onclick="showProduct(${p.id})">
-                    <div class="aspect-square bg-gray-50 overflow-hidden">
-                        <img src="${p.image}" class="w-full h-full object-cover">
-                    </div>
-                    <div class="p-4">
-                        <span class="text-[10px] uppercase font-bold text-blue-500 tracking-widest">${p.category}</span>
-                        <h3 class="font-bold text-gray-900 truncate">${p.name}</h3>
-                        <p class="text-blue-600 font-black mt-2">৳ ${p.price.toLocaleString()}</p>
-                    </div>
-                </div>
-            `).join('');
-        }
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
 
-        function renderCategories() {
-            const container = document.getElementById('category-list');
-            container.innerHTML = CATEGORIES.map(cat => `
-                <button onclick="filterCategory('${cat}')" class="block w-full text-left px-4 py-2 rounded-lg ${currentCategory === cat ? 'bg-blue-600 text-white font-bold' : 'text-gray-600 hover:bg-gray-100'}">
-                    ${cat}
-                </button>
-            `).join('');
-        }
-
-        function filterCategory(cat) {
-            currentCategory = cat;
-            renderCategories();
-            const filtered = cat === 'All' ? PRODUCTS : PRODUCTS.filter(p => p.category === cat);
-            renderProducts('shop-products', filtered);
-        }
-
-        function showProduct(id) {
-            const p = PRODUCTS.find(prod => prod.id === id);
-            const container = document.getElementById('product-detail-container');
-            
-            container.innerHTML = `
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
-                    <div class="rounded-3xl overflow-hidden bg-gray-50 aspect-square">
-                        <img src="${p.image}" class="w-full h-full object-cover">
-                    </div>
-                    <div class="flex flex-col">
-                        <span class="text-blue-600 font-bold uppercase text-sm tracking-widest">${p.category}</span>
-                        <h1 class="text-4xl font-black mt-2 mb-4">${p.name}</h1>
-                        <p class="text-3xl font-black text-blue-600 mb-6">৳ ${p.price.toLocaleString()}</p>
-                        <p class="text-gray-600 leading-relaxed mb-8">${p.desc}</p>
-                        
-                        <div class="bg-gray-50 p-6 rounded-2xl mb-8">
-                            <h4 class="font-bold mb-4">Key Features</h4>
-                            <ul class="space-y-2">
-                                ${p.specs.map(s => `<li class="text-sm text-gray-600"><i class="fa-solid fa-check text-green-500 mr-2"></i> ${s}</li>`).join('')}
-                            </ul>
-                        </div>
-
-                        <button onclick="handlePurchase('${p.name}', ${p.price})" class="w-full harix-gradient text-white py-5 rounded-2xl font-black text-xl shadow-xl shadow-blue-100 hover:scale-[1.02] transition-transform">
-                            ORDER NOW
-                        </button>
-                        <p class="text-center text-xs text-gray-400 mt-4 italic">Confirm your details on the next page</p>
-                    </div>
-                </div>
-            `;
-            showView('product');
-        }
-
-        /**
-         * This function handles the "Order Now" click.
-         * It takes the product details and builds a URL that pre-fills your Google Form.
-         */
-        function handlePurchase(name, price) {
-            const encodedName = encodeURIComponent(name);
-            const encodedPrice = encodeURIComponent(`৳ ${price.toLocaleString()}`);
-
-            // This builds the special link that tells Google Forms what values to put in the boxes
-            const prefillParams = `?usp=pp_url&${ENTRY_ID_PRODUCT_NAME}=${encodedName}&${ENTRY_ID_PRICE}=${encodedPrice}`;
-            
-            const finalUrl = GOOGLE_FORM_URL + prefillParams;
-            
-            // Send the user to the form
-            window.location.href = finalUrl;
-        }
+        document.querySelectorAll('section').forEach(section => {
+            observer.observe(section);
+        });
     </script>
 </body>
 </html>
