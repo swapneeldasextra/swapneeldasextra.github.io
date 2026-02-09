@@ -11,39 +11,45 @@
         
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #ffffff;
+            background-color: #fafafa;
             color: #1d1d1f;
             -webkit-font-smoothing: antialiased;
             scroll-behavior: smooth;
         }
 
+        .glass-nav {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+
         .soft-shadow {
-            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.04);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.03);
         }
 
         .order-gradient {
-            background: #0071e3;
-            transition: all 0.2s ease;
+            background: linear-gradient(135deg, #0071e3 0%, #00c6ff 100%);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .order-gradient:hover {
-            background: #0077ed;
-            transform: scale(1.02);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0, 113, 227, 0.3);
         }
 
         .floating-product {
-            animation: float 6s ease-in-out infinite;
+            animation: float 5s ease-in-out infinite;
         }
 
         @keyframes float {
             0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
+            50% { transform: translateY(-15px); }
         }
 
         section {
             opacity: 0;
-            transform: translateY(20px);
-            transition: all 0.6s ease-out;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         section.visible {
@@ -51,295 +57,288 @@
             transform: translateY(0);
         }
 
-        .gallery-img {
-            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        .feature-card {
+            transition: all 0.3s ease;
+            border: 1px solid rgba(0,0,0,0.03);
         }
-        
-        .gallery-card:hover .gallery-img {
-            transform: scale(1.08);
+
+        .feature-card:hover {
+            background: #fff;
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.05);
+        }
+
+        .color-dot {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.2s;
+            border: 2px solid transparent;
+        }
+
+        .color-dot.active {
+            border-color: #0071e3;
+            transform: scale(1.2);
         }
 
         input:focus, textarea:focus, select:focus {
             outline: none;
             border-color: #0071e3;
-            box-shadow: 0 0 0 2px rgba(0, 113, 227, 0.1);
+            background: #fff;
         }
     </style>
 </head>
 <body>
 
-    <!-- Minimalist Nav -->
-    <nav class="fixed top-0 w-full z-50 bg-white/80 backdrop-blur-md border-b border-gray-100">
+    <!-- Nav -->
+    <nav class="fixed top-0 w-full z-50 glass-nav border-b border-gray-100">
         <div class="max-w-6xl mx-auto px-6 h-16 flex justify-between items-center">
             <div class="flex items-center space-x-2">
-                <div class="w-8 h-8 bg-black rounded-lg flex items-center justify-center">
-                    <span class="text-white font-bold text-sm">H</span>
+                <div class="w-9 h-9 bg-black rounded-xl flex items-center justify-center">
+                    <span class="text-white font-bold text-lg">H</span>
                 </div>
-                <span class="text-xl font-bold tracking-tight">HARIX</span>
+                <span class="text-xl font-bold tracking-tight uppercase">Harix</span>
             </div>
-            <button onclick="scrollToOrder()" class="bg-black text-white px-5 py-2 rounded-full text-xs font-bold hover:opacity-80 transition-opacity">
-                Order Now
+            <div class="hidden md:flex space-x-8 text-sm font-medium text-gray-500">
+                <a href="#features" class="hover:text-black transition-colors">Features</a>
+                <a href="#specs" class="hover:text-black transition-colors">Specs</a>
+                <a href="#order-section" class="hover:text-black transition-colors">Order</a>
+            </div>
+            <button class="bg-black text-white px-6 py-2.5 rounded-full text-xs font-bold hover:scale-105 transition-all" onclick="scrollToOrder()">
+                Buy Now
             </button>
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <main class="pt-32 pb-10 px-6">
-        <section class="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div class="text-center lg:text-left space-y-6">
-                <h2 class="text-blue-600 font-semibold tracking-wide text-sm uppercase italic">Bangladesh First: Watch + Earbuds</h2>
-                <h1 class="text-5xl md:text-6xl font-extrabold tracking-tight leading-tight">
-                    Smart Watch <br> <span class="text-gray-400 font-medium">with Built-in Buds.</span>
+    <!-- Hero -->
+    <main class="pt-32 pb-20 px-6 overflow-hidden">
+        <section class="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            <div class="text-center lg:text-left space-y-8">
+                <div class="inline-block px-4 py-1.5 bg-blue-50 text-blue-600 rounded-full text-xs font-bold tracking-widest uppercase">
+                    New Arrival 2024
+                </div>
+                <h1 class="text-6xl md:text-7xl font-extrabold tracking-tight leading-[1.1]">
+                    Power on your <span class="text-blue-600">Wrist.</span>
                 </h1>
-                <p class="text-xl text-gray-500 max-w-lg mx-auto lg:mx-0 leading-relaxed">
-                    The ultimate 2-in-1 wearable. Rugged 1.85" HD display with high-fidelity earbuds hidden right inside. Never forget your music again.
+                <p class="text-xl text-gray-500 max-w-lg mx-auto lg:mx-0 leading-relaxed font-medium">
+                    Meet HARIX Pro—the world's most advanced smart watch with integrated TWS earbuds. Perfect sound, perfect health tracking, all in one place.
                 </p>
-                <div class="pt-4 flex flex-col items-center lg:items-start gap-4">
-                    <div class="flex items-center space-x-4">
-                        <span class="text-4xl font-bold text-slate-900">৳ 1,200</span>
-                        <span class="text-gray-400 line-through text-lg">৳ 2,990</span>
+                
+                <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-6 pt-4">
+                    <div class="flex flex-col items-center lg:items-start">
+                        <div class="flex items-center space-x-3 mb-1">
+                            <span class="text-5xl font-black text-slate-900">৳ 1,200</span>
+                            <span class="text-gray-300 line-through text-xl">৳ 2,990</span>
+                        </div>
+                        <p class="text-green-600 text-sm font-bold"><i class="fa-solid fa-bolt mr-1"></i> Save 60% Today Only!</p>
                     </div>
-                    <!-- Buy Now Button linked to order section -->
-                    <a href="#order-section" class="order-gradient text-white px-12 py-4 rounded-full font-bold text-lg shadow-lg inline-block text-center">
-                        Buy Now
-                    </a>
-                    <p class="text-xs text-gray-400 mt-2">Free Delivery • 7 Days Replacement • 1 Year Warranty</p>
+                    <button class="order-gradient text-white px-10 py-5 rounded-2xl font-bold text-xl shadow-xl w-full sm:w-auto" onclick="scrollToOrder()">
+                        Claim Offer
+                    </button>
+                </div>
+                <div class="flex items-center justify-center lg:justify-start space-x-6 pt-6 opacity-40">
+                    <div class="text-center"><i class="fa-brands fa-bluetooth text-2xl block mb-1"></i><span class="text-[10px] font-bold uppercase">v5.3</span></div>
+                    <div class="text-center"><i class="fa-solid fa-heart-pulse text-2xl block mb-1"></i><span class="text-[10px] font-bold uppercase">HRM</span></div>
+                    <div class="text-center"><i class="fa-solid fa-battery-full text-2xl block mb-1"></i><span class="text-[10px] font-bold uppercase">7 Days</span></div>
+                    <div class="text-center"><i class="fa-solid fa-droplet text-2xl block mb-1"></i><span class="text-[10px] font-bold uppercase">IP67</span></div>
                 </div>
             </div>
 
-            <!-- Main Image Area -->
-            <div class="relative flex justify-center items-center">
-                <div class="absolute w-72 h-72 bg-blue-100 rounded-full blur-3xl opacity-30"></div>
-                <img src="img1.png" 
-                     alt="HARIX Smart Watch Colors" class="floating-product w-full max-w-md relative z-10 drop-shadow-2xl rounded-2xl">
+            <div class="relative flex justify-center lg:justify-end">
+                <div class="absolute inset-0 bg-blue-200 rounded-full blur-[120px] opacity-20 scale-150 animate-pulse"></div>
+                <img src="https://placehold.co/800x800/222/white?text=HARIX+ULTRA" alt="HARIX Watch" class="floating-product w-full max-w-lg relative z-10 drop-shadow-[0_35px_35px_rgba(0,0,0,0.15)] rounded-3xl">
             </div>
         </section>
     </main>
 
-    <!-- The Magic: Earbuds Reveal -->
-    <section class="max-w-6xl mx-auto px-6 py-20">
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-            <div class="order-2 lg:order-1">
-                <img src="img2.png" alt="Earbuds Integrated" class="rounded-3xl soft-shadow w-full">
+    <!-- Key Features Grid -->
+    <section id="features" class="py-24 px-6 bg-white">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center max-w-2xl mx-auto mb-20 space-y-4">
+                <h2 class="text-4xl font-extrabold tracking-tight">Everything you need.</h2>
+                <p class="text-gray-500">More than just a watch. It's your personal assistant and entertainment hub.</p>
             </div>
-            <div class="space-y-6 order-1 lg:order-2">
-                <h2 class="text-3xl font-bold tracking-tight">Music on your wrist.</h2>
-                <p class="text-lg text-gray-500">Stop carrying extra cases. Our innovative design houses a pair of high-fidelity wireless earbuds directly under the watch face. Magnetically secured and always charging.</p>
-                <ul class="space-y-4">
-                    <li class="flex items-center space-x-3 text-gray-700">
-                        <i class="fa-solid fa-circle-check text-blue-600"></i>
-                        <span>Auto-pairing when removed</span>
-                    </li>
-                    <li class="flex items-center space-x-3 text-gray-700">
-                        <i class="fa-solid fa-circle-check text-blue-600"></i>
-                        <span>Noise-isolating silicone tips</span>
-                    </li>
-                    <li class="flex items-center space-x-3 text-gray-700">
-                        <i class="fa-solid fa-circle-check text-blue-600"></i>
-                        <span>Touch control for calls & music</span>
-                    </li>
-                </ul>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="feature-card p-8 rounded-[2.5rem] bg-gray-50/50">
+                    <div class="w-14 h-14 bg-blue-600 text-white rounded-2xl flex items-center justify-center text-2xl mb-6 shadow-lg shadow-blue-200">
+                        <i class="fa-solid fa-headphones"></i>
+                    </div>
+                    <h3 class="font-bold text-xl mb-3">TWS Inside</h3>
+                    <p class="text-gray-500 text-sm leading-relaxed">High-quality earbuds hidden inside the watch casing with magnetic charging.</p>
+                </div>
+                <div class="feature-card p-8 rounded-[2.5rem] bg-gray-50/50">
+                    <div class="w-14 h-14 bg-pink-500 text-white rounded-2xl flex items-center justify-center text-2xl mb-6 shadow-lg shadow-pink-200">
+                        <i class="fa-solid fa-phone"></i>
+                    </div>
+                    <h3 class="font-bold text-xl mb-3">BT Calling</h3>
+                    <p class="text-gray-500 text-sm leading-relaxed">Make and receive calls directly from your wrist with a crystal clear speaker.</p>
+                </div>
+                <div class="feature-card p-8 rounded-[2.5rem] bg-gray-50/50">
+                    <div class="w-14 h-14 bg-green-500 text-white rounded-2xl flex items-center justify-center text-2xl mb-6 shadow-lg shadow-green-200">
+                        <i class="fa-solid fa-battery-three-quarters"></i>
+                    </div>
+                    <h3 class="font-bold text-xl mb-3">7-Day Battery</h3>
+                    <p class="text-gray-500 text-sm leading-relaxed">Long-lasting battery life for the watch and multiple charges for the earbuds.</p>
+                </div>
+                <div class="feature-card p-8 rounded-[2.5rem] bg-gray-50/50">
+                    <div class="w-14 h-14 bg-orange-500 text-white rounded-2xl flex items-center justify-center text-2xl mb-6 shadow-lg shadow-orange-200">
+                        <i class="fa-solid fa-heart-pulse"></i>
+                    </div>
+                    <h3 class="font-bold text-xl mb-3">Health Pro</h3>
+                    <p class="text-gray-500 text-sm leading-relaxed">Real-time SpO2, Heart rate and Sleep tracking with accurate sensors.</p>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Gallery Grid -->
-    <section class="max-w-6xl mx-auto px-6 py-20 bg-gray-50 rounded-[3rem] my-10">
-        <div class="text-center mb-12">
-            <h2 class="text-3xl font-bold tracking-tight">Precision Engineering</h2>
-            <p class="text-gray-500 mt-2">Flip to reveal. Snap to charge.</p>
-        </div>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div class="gallery-card group bg-white p-4 rounded-3xl soft-shadow overflow-hidden">
-                <div class="overflow-hidden rounded-2xl aspect-square mb-4">
-                    <img src="img4.png" alt="Mechanical View" class="gallery-img w-full h-full object-cover">
-                </div>
-                <h4 class="font-bold text-center text-sm">Flip-Top Design</h4>
+    <!-- Interactive Specs -->
+    <section id="specs" class="py-24 px-6">
+        <div class="max-w-6xl mx-auto bg-black text-white rounded-[4rem] p-12 md:p-20 overflow-hidden relative">
+            <div class="absolute right-0 top-0 w-1/2 h-full opacity-20 pointer-events-none">
+                <img src="https://placehold.co/800x1200/444/white?text=X-Ray+View" alt="Tech" class="w-full h-full object-cover">
             </div>
-            <div class="gallery-card group bg-white p-4 rounded-3xl soft-shadow overflow-hidden">
-                <div class="overflow-hidden rounded-2xl aspect-square mb-4">
-                    <img src="img5.png" alt="Buds Charging" class="gallery-img w-full h-full object-cover">
-                </div>
-                <h4 class="font-bold text-center text-sm">Magnetic Charging</h4>
-            </div>
-            <div class="gallery-card group bg-white p-4 rounded-3xl soft-shadow overflow-hidden">
-                <div class="overflow-hidden rounded-2xl aspect-square mb-4">
-                    <img src="img6.png" alt="Complete Set" class="gallery-img w-full h-full object-cover">
-                </div>
-                <h4 class="font-bold text-center text-sm">Premium Finish</h4>
-            </div>
-        </div>
-    </section>
-
-    <!-- Technical Specs -->
-    <section class="max-w-6xl mx-auto px-6 py-24">
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
-            <div class="bg-slate-900 text-white p-10 rounded-[2.5rem] space-y-8">
-                <h3 class="text-2xl font-bold">Health & Performance</h3>
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                    <div>
-                        <p class="text-blue-400 text-xs font-bold uppercase tracking-widest mb-1">Sensors</p>
-                        <p class="text-sm opacity-80">True Blood Oxygen, Blood Glucose, Heart Rate, Blood Pressure Monitoring.</p>
+            <div class="relative z-10 lg:w-3/5 space-y-10">
+                <h2 class="text-4xl md:text-5xl font-bold leading-tight">Technology that <br> <span class="text-blue-500">fits your life.</span></h2>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-8">
+                    <div class="space-y-2">
+                        <div class="text-blue-500 font-bold uppercase text-xs tracking-widest">Display</div>
+                        <div class="text-lg">1.85" AMOLED Hybrid Panel</div>
                     </div>
-                    <div>
-                        <p class="text-blue-400 text-xs font-bold uppercase tracking-widest mb-1">Chipset</p>
-                        <p class="text-sm opacity-80">Zhongke Lanxun Main Control for ultra-smooth performance.</p>
+                    <div class="space-y-2">
+                        <div class="text-blue-500 font-bold uppercase text-xs tracking-widest">Connectivity</div>
+                        <div class="text-lg">Dual Bluetooth V5.3</div>
                     </div>
-                    <div>
-                        <p class="text-blue-400 text-xs font-bold uppercase tracking-widest mb-1">Battery</p>
-                        <p class="text-sm opacity-80">230mAh (3-5 days active, 15-20 days standby).</p>
+                    <div class="space-y-2">
+                        <div class="text-blue-500 font-bold uppercase text-xs tracking-widest">Protection</div>
+                        <div class="text-lg">IP67 Water & Dust Proof</div>
                     </div>
-                    <div>
-                        <p class="text-blue-400 text-xs font-bold uppercase tracking-widest mb-1">App</p>
-                        <p class="text-sm opacity-80">I-Band App Support for iOS & Android.</p>
+                    <div class="space-y-2">
+                        <div class="text-blue-500 font-bold uppercase text-xs tracking-widest">Charging</div>
+                        <div class="text-lg">Snap-On Magnetic Charge</div>
                     </div>
                 </div>
-            </div>
-            <div class="flex flex-col justify-center space-y-6 px-4">
-                <h3 class="text-3xl font-extrabold">The "Ceiling" of Cost-Effectiveness.</h3>
-                <p class="text-gray-500 leading-relaxed">Our private model design ensures fewer competitors and a unique look that stands out. Featuring a high-fidelity speaker and a smooth rotary encoder for effortless navigation.</p>
-                <div class="flex space-x-4">
-                    <div class="w-12 h-12 rounded-full bg-black border-2 border-white ring-2 ring-gray-100"></div>
-                    <div class="w-12 h-12 rounded-full bg-pink-200 border-2 border-white ring-2 ring-gray-100"></div>
-                </div>
-                <p class="text-sm font-medium">Available in Matte Black and Rose Pink</p>
+                <button class="bg-white text-black px-8 py-4 rounded-2xl font-bold hover:bg-blue-500 hover:text-white transition-all" onclick="scrollToOrder()">
+                    Pre-Order Now
+                </button>
             </div>
         </div>
     </section>
 
-    <!-- Order Form Section -->
-    <section id="order-section" class="py-20 px-6 max-w-6xl mx-auto">
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 bg-white border border-gray-100 p-8 md:p-12 rounded-[3rem] soft-shadow">
-            <div>
-                <h2 class="text-4xl font-extrabold mb-4 italic">Confirm Your Order.</h2>
-                <p class="text-gray-500 mb-8">Fill out the details below to complete your purchase. Cash on delivery available nationwide.</p>
+    <!-- Order Section -->
+    <section id="order-section" class="py-24 px-6">
+        <div class="max-w-5xl mx-auto bg-white border border-gray-100 p-8 md:p-16 rounded-[3.5rem] soft-shadow grid grid-cols-1 lg:grid-cols-2 gap-16">
+            <div class="space-y-8">
+                <h2 class="text-5xl font-black italic tracking-tighter">Confirm <br> Order.</h2>
+                <p class="text-gray-400 font-medium">অর্ডার করতে ফর্মটি পূরণ করুন। আমাদের ডেলিভারি টিম ২৪-৪৮ ঘণ্টার মধ্যে আপনার ঠিকানায় পণ্য পৌঁছে দেবে।</p>
                 
-                <div class="bg-gray-50 p-6 rounded-2xl space-y-4">
-                    <div class="flex justify-between items-center border-b border-gray-200 pb-4">
-                        <span class="font-medium">Product</span>
-                        <span>HARIX 2-in-1 Watch</span>
+                <div class="space-y-4">
+                    <div class="flex items-center space-x-4 p-4 bg-gray-50 rounded-2xl">
+                        <div class="w-12 h-12 bg-white rounded-xl flex items-center justify-center text-blue-600 shadow-sm"><i class="fa-solid fa-truck-fast"></i></div>
+                        <div><p class="font-bold text-sm">Free Delivery</p><p class="text-xs text-gray-400">All over Bangladesh</p></div>
                     </div>
-                    <div class="flex justify-between items-center border-b border-gray-200 pb-4">
-                        <span class="font-medium">Unit Price</span>
-                        <span>৳ 1,200</span>
+                    <div class="flex items-center space-x-4 p-4 bg-gray-50 rounded-2xl">
+                        <div class="w-12 h-12 bg-white rounded-xl flex items-center justify-center text-green-600 shadow-sm"><i class="fa-solid fa-hand-holding-dollar"></i></div>
+                        <div><p class="font-bold text-sm">Cash on Delivery</p><p class="text-xs text-gray-400">Pay after checking</p></div>
                     </div>
-                    <div class="flex justify-between items-center border-b border-gray-200 pb-4">
-                        <span class="font-medium">Delivery</span>
-                        <span class="text-green-600 font-bold">FREE</span>
+                </div>
+
+                <div class="pt-6 border-t border-gray-100">
+                    <div class="flex justify-between items-center mb-2 text-gray-500">
+                        <span>Total Payable</span>
+                        <span class="line-through text-xs">৳ 2,990</span>
                     </div>
-                    <div class="flex justify-between items-center pt-2">
-                        <span class="text-xl font-bold">Total Payable</span>
-                        <span id="total-display" class="text-2xl font-extrabold text-blue-600">৳ 1,200</span>
+                    <div class="flex justify-between items-center">
+                        <span class="text-2xl font-bold">Total Bill:</span>
+                        <span id="total-display" class="text-4xl font-black text-blue-600 tracking-tighter">৳ 1,200</span>
                     </div>
                 </div>
             </div>
 
-            <form id="orderForm" onsubmit="handleOrderSubmit(event)" class="space-y-5">
-                <div class="grid grid-cols-2 gap-4">
+            <form id="orderForm" class="space-y-6">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
-                        <label class="block text-sm font-semibold mb-2">Color</label>
-                        <select name="color" required class="w-full px-4 py-4 bg-gray-50 border border-gray-200 rounded-xl transition-all appearance-none cursor-pointer">
-                            <option value="Matte Black">Matte Black</option>
-                            <option value="Rose Pink">Rose Pink</option>
-                        </select>
+                        <label class="block text-xs font-black uppercase text-gray-400 mb-3 ml-1 tracking-widest">Color Selection</label>
+                        <div class="flex space-x-4 p-4 bg-gray-50 rounded-2xl border border-gray-100">
+                            <div class="color-dot bg-black active" data-color="Matte Black" onclick="selectColor(this)"></div>
+                            <div class="color-dot bg-rose-200" data-color="Rose Pink" onclick="selectColor(this)"></div>
+                            <input type="hidden" name="color" id="color-input" value="Matte Black">
+                        </div>
                     </div>
                     <div>
-                        <label class="block text-sm font-semibold mb-2">Quantity</label>
-                        <input type="number" name="quantity" value="1" min="1" max="10" oninput="updatePrice(this.value)" required 
-                            class="w-full px-4 py-4 bg-gray-50 border border-gray-200 rounded-xl transition-all">
+                        <label class="block text-xs font-black uppercase text-gray-400 mb-3 ml-1 tracking-widest">Quantity</label>
+                        <input type="number" name="quantity" value="1" min="1" class="w-full p-4 bg-gray-50 border border-transparent rounded-2xl font-bold text-lg focus:bg-white" oninput="updatePrice(this.value)" required>
                     </div>
                 </div>
-                <div>
-                    <label class="block text-sm font-semibold mb-2">Full Name</label>
-                    <input type="text" name="name" required placeholder="Enter your full name" 
-                        class="w-full px-5 py-4 bg-gray-50 border border-gray-200 rounded-xl transition-all">
+
+                <div class="space-y-4">
+                    <input type="text" name="name" placeholder="Full Name" class="w-full p-5 bg-gray-50 border border-transparent rounded-2xl transition-all focus:bg-white focus:border-blue-100" required>
+                    <input type="tel" name="phone" placeholder="Phone Number" class="w-full p-5 bg-gray-50 border border-transparent rounded-2xl transition-all focus:bg-white focus:border-blue-100" required>
+                    <textarea name="address" rows="3" placeholder="Full Address (House, Road, Area, City)" class="w-full p-5 bg-gray-50 border border-transparent rounded-2xl transition-all focus:bg-white focus:border-blue-100" required></textarea>
                 </div>
-                <div>
-                    <label class="block text-sm font-semibold mb-2">Phone Number</label>
-                    <input type="tel" name="phone" required placeholder="01XXX-XXXXXX" 
-                        class="w-full px-5 py-4 bg-gray-50 border border-gray-200 rounded-xl transition-all">
-                </div>
-                <div>
-                    <label class="block text-sm font-semibold mb-2">Full Address</label>
-                    <textarea name="address" required rows="3" placeholder="House no, Road no, Area, City" 
-                        class="w-full px-5 py-4 bg-gray-50 border border-gray-200 rounded-xl transition-all"></textarea>
-                </div>
-                <button type="submit" class="w-full order-gradient text-white py-5 rounded-full font-bold text-xl shadow-lg mt-4">
+
+                <button type="submit" id="submit-btn" class="w-full order-gradient text-white py-6 rounded-[1.5rem] font-black text-xl shadow-2xl transition-all uppercase tracking-widest active:scale-[0.98]">
                     Confirm Order
                 </button>
-                <p class="text-center text-xs text-gray-400">
-                    By clicking confirm, you agree to our 
-                    <button type="button" onclick="openTerms()" class="text-blue-600 underline hover:text-blue-800">terms of service</button>.
-                </p>
             </form>
         </div>
     </section>
 
-    <!-- Success Modal -->
-    <div id="successModal" class="fixed inset-0 z-[100] hidden items-center justify-center bg-black/60 backdrop-blur-sm p-6">
-        <div class="bg-white rounded-[2.5rem] p-10 max-w-sm w-full text-center space-y-6">
-            <div class="w-20 h-20 bg-green-100 text-green-600 rounded-full flex items-center justify-center mx-auto text-4xl">
-                <i class="fa-solid fa-check"></i>
-            </div>
-            <h3 class="text-2xl font-bold">Order Confirmed!</h3>
-            <p class="text-gray-500">Thank you for choosing HARIX. Our team will contact you shortly to confirm your delivery.</p>
-            <button onclick="closeModal('successModal')" class="w-full bg-black text-white py-4 rounded-full font-bold">
-                Great!
-            </button>
-        </div>
-    </div>
-
-    <!-- Terms of Service Modal -->
-    <div id="termsModal" class="fixed inset-0 z-[100] hidden items-center justify-center bg-black/60 backdrop-blur-sm p-6">
-        <div class="bg-white rounded-[2.5rem] p-8 md:p-12 max-w-2xl w-full relative overflow-hidden flex flex-col max-h-[90vh]">
-            <button onclick="closeModal('termsModal')" class="absolute top-6 right-6 text-gray-400 hover:text-black">
-                <i class="fa-solid fa-xmark text-2xl"></i>
-            </button>
-            <h3 class="text-2xl font-extrabold mb-6">Terms of Service</h3>
-            <div class="overflow-y-auto pr-4 space-y-6 text-sm text-gray-600 leading-relaxed">
-                <section class="space-y-2 opacity-100 transform-none">
-                    <h4 class="font-bold text-black uppercase tracking-wider text-xs">1. Order Confirmation</h4>
-                    <p>All orders placed through our website are subject to availability. After placing an order, our representative will call you for final confirmation. The order is only processed after voice confirmation.</p>
-                </section>
-                <section class="space-y-2 opacity-100 transform-none">
-                    <h4 class="font-bold text-black uppercase tracking-wider text-xs">2. Delivery Policy</h4>
-                    <p>We offer free home delivery across Bangladesh. Estimated delivery time is 24-48 hours inside Dhaka and 3-5 days outside Dhaka. Cash on Delivery is available for all regions.</p>
-                </section>
-                <section class="space-y-2 opacity-100 transform-none">
-                    <h4 class="font-bold text-black uppercase tracking-wider text-xs">3. Replacement Warranty</h4>
-                    <p>We provide a 7-day replacement warranty for manufacturing defects. If you find any issues with the watch or earbuds within 7 days of receiving the product, please contact us for a free replacement.</p>
-                </section>
-                <section class="space-y-2 opacity-100 transform-none">
-                    <h4 class="font-bold text-black uppercase tracking-wider text-xs">4. Service Warranty</h4>
-                    <p>The HARIX 2-in-1 Smart Watch comes with a 1-year service warranty. This covers technical support and software issues. Physical damage, water damage, or screen breakage is not covered under warranty.</p>
-                </section>
-                <section class="space-y-2 opacity-100 transform-none">
-                    <h4 class="font-bold text-black uppercase tracking-wider text-xs">5. Return & Refunds</h4>
-                    <p>Returns are only accepted if the product is damaged upon delivery. Refunds are processed via bKash/Nagad within 7 working days of return receipt.</p>
-                </section>
-            </div>
-            <div class="mt-8 pt-6 border-t border-gray-100">
-                <button onclick="closeModal('termsModal')" class="w-full bg-black text-white py-4 rounded-full font-bold">
-                    Close
-                </button>
-            </div>
-        </div>
-    </div>
-
     <!-- Footer -->
-    <footer class="py-12 border-t border-gray-100 text-center">
-        <div class="max-w-6xl mx-auto px-6">
-            <p class="text-xs text-gray-400 font-medium uppercase tracking-widest mb-4">© 2026 HARIX BANGLADESH</p>
-            <div class="flex justify-center space-x-6 text-gray-400">
-                <a href="#" class="hover:text-black transition-colors"><i class="fa-brands fa-facebook-f"></i></a>
-                <a href="#" class="hover:text-black transition-colors"><i class="fa-brands fa-instagram"></i></a>
-                <a href="#" class="hover:text-black transition-colors"><i class="fa-brands fa-whatsapp"></i></a>
+    <footer class="py-16 px-6 border-t border-gray-100 bg-white">
+        <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-12">
+            <div class="space-y-6">
+                <div class="flex items-center space-x-2">
+                    <div class="w-8 h-8 bg-black rounded-lg flex items-center justify-center text-white font-bold">H</div>
+                    <span class="text-xl font-bold uppercase">Harix</span>
+                </div>
+                <p class="text-gray-400 text-sm max-w-xs">Premium 2-in-1 wearables for the modern life.</p>
+            </div>
+            <div class="space-y-4 text-sm">
+                <h4 class="font-bold uppercase tracking-widest text-xs text-gray-400">Contact</h4>
+                <p class="text-gray-600">Hotline: +880 1621476395</p>
+                <p class="text-gray-600">Sylhet, Bangladesh</p>
+            </div>
+            <div class="space-y-4 text-sm">
+                <h4 class="font-bold uppercase tracking-widest text-xs text-gray-400">Legal</h4>
+                <button onclick="openTerms()" class="text-gray-600 block hover:text-black">Privacy Policy</button>
+                <button onclick="openTerms()" class="text-gray-600 block hover:text-black">Terms of Service</button>
             </div>
         </div>
     </footer>
 
+    <!-- Success Modal -->
+    <div id="successModal" class="fixed inset-0 z-[100] hidden items-center justify-center bg-black/60 backdrop-blur-md p-6">
+        <div class="bg-white rounded-[3rem] p-12 max-w-sm w-full text-center space-y-8 shadow-2xl relative overflow-hidden">
+            <div class="w-20 h-20 bg-green-500 text-white rounded-full flex items-center justify-center mx-auto text-4xl shadow-xl animate-bounce">
+                <i class="fa-solid fa-check"></i>
+            </div>
+            <div>
+                <h3 class="text-3xl font-black mb-2 tracking-tight italic">Success!</h3>
+                <p class="text-gray-500 font-medium">অর্ডারটি সফল হয়েছে। আমরা শীঘ্রই কল করে কনফার্ম করবো।</p>
+            </div>
+            <button class="w-full bg-black text-white py-4 rounded-2xl font-bold" onclick="closeModal('successModal')">Close</button>
+        </div>
+    </div>
+
+    <!-- Terms Modal -->
+    <div id="termsModal" class="fixed inset-0 z-[100] hidden items-center justify-center bg-black/60 backdrop-blur-md p-6">
+        <div class="bg-white rounded-[2.5rem] p-10 max-w-lg w-full space-y-6 max-h-[80vh] overflow-y-auto">
+            <h3 class="text-2xl font-black italic">Policy</h3>
+            <div class="text-gray-600 text-sm space-y-4">
+                <p><strong>Delivery:</strong> 24-48 Hours inside Dhaka.</p>
+                <p><strong>Warranty:</strong> 7-day replacement for tech issues.</p>
+            </div>
+            <button class="w-full bg-gray-100 text-black py-4 rounded-2xl font-bold" onclick="closeModal('termsModal')">Got it</button>
+        </div>
+    </div>
+
     <script>
         const UNIT_PRICE = 1200;
+        
+        // জরুরি: আপনার Google Apps Script এর 'Web App URL' এখানে বসান
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbyj17Vvz4Pm9VB4SNP_buqAxqQ61v9w5BOZp2W_mrN9hlYN3wbKrXVg0t1Z9ttBSNzv/exec';
 
         function updatePrice(quantity) {
             const total = quantity * UNIT_PRICE;
@@ -350,54 +349,72 @@
             document.getElementById('order-section').scrollIntoView({ behavior: 'smooth' });
         }
 
-        function handleOrderSubmit(event) {
-            event.preventDefault();
-            const formData = new FormData(event.target);
-            const data = Object.fromEntries(formData.entries());
-            
-            console.log("Order Received:", data);
-            
-            // Show Success Modal
-            const modal = document.getElementById('successModal');
-            modal.classList.remove('hidden');
-            modal.classList.add('flex');
-            
-            // Reset Form and Price
-            event.target.reset();
-            updatePrice(1);
+        function selectColor(dot) {
+            document.querySelectorAll('.color-dot').forEach(d => d.classList.remove('active'));
+            dot.classList.add('active');
+            document.getElementById('color-input').value = dot.getAttribute('data-color');
         }
 
-        function openTerms() {
-            const modal = document.getElementById('termsModal');
-            modal.classList.remove('hidden');
-            modal.classList.add('flex');
-            document.body.style.overflow = 'hidden'; 
-        }
+        const orderForm = document.getElementById('orderForm');
+        const submitBtn = document.getElementById('submit-btn');
+
+        orderForm.addEventListener('submit', event => {
+            event.preventDefault();
+            
+            if (scriptURL === 'আপনার_WEB_APP_URL_এখানে_দিন' || scriptURL === '') {
+                alert("দয়া করে কোডের মধ্যে আপনার Google Script Deployment URL টি বসান!");
+                return;
+            }
+
+            submitBtn.disabled = true;
+            submitBtn.innerText = "Processing...";
+            submitBtn.style.opacity = "0.7";
+
+            const formData = new FormData(orderForm);
+            const payload = new URLSearchParams();
+            payload.append('Name', formData.get('name'));
+            payload.append('Phone', formData.get('phone'));
+            payload.append('Address', formData.get('address'));
+            payload.append('OrderDetails', `Color: ${formData.get('color')}, Qty: ${formData.get('quantity')}`);
+
+            fetch(scriptURL, { 
+                method: 'POST', 
+                mode: 'no-cors', 
+                body: payload 
+            })
+            .then(() => {
+                document.getElementById('successModal').classList.replace('hidden', 'flex');
+                orderForm.reset();
+                updatePrice(1);
+                submitBtn.disabled = false;
+                submitBtn.innerText = "Confirm Order";
+                submitBtn.style.opacity = "1";
+            })
+            .catch(error => {
+                alert("Submission failed. Check Console.");
+                console.error('Error!', error.message);
+                submitBtn.disabled = false;
+                submitBtn.innerText = "Confirm Order";
+                submitBtn.style.opacity = "1";
+            });
+        });
 
         function closeModal(id) {
-            const modal = document.getElementById(id);
-            modal.classList.add('hidden');
-            modal.classList.remove('flex');
+            document.getElementById(id).classList.replace('flex', 'hidden');
             document.body.style.overflow = 'auto';
         }
 
-        window.onclick = function(event) {
-            if (event.target.id === 'successModal' || event.target.id === 'termsModal') {
-                closeModal(event.target.id);
-            }
+        function openTerms() {
+            document.getElementById('termsModal').classList.replace('hidden', 'flex');
+            document.body.style.overflow = 'hidden';
         }
 
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
+                if (entry.isIntersecting) entry.target.classList.add('visible');
             });
         }, { threshold: 0.1 });
-
-        document.querySelectorAll('section').forEach(section => {
-            observer.observe(section);
-        });
+        document.querySelectorAll('section').forEach(s => observer.observe(s));
     </script>
 </body>
 </html>
